@@ -1,0 +1,2 @@
+include ':app', ':lib_base', ':home', ':other'
+rootProject.name='ModuleDemo'

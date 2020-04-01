@@ -1,0 +1,54 @@
+apply plugin: 'com.android.library'
+
+def config = rootProject.ext
+android {
+    compileSdkVersion config.android.compileSdkVersion
+    buildToolsVersion config.android.buildToolsVersion
+
+
+    defaultConfig {
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [moduleName: project.getName()]
+            }
+        }
+        minSdkVersion config.android.minSdkVersion
+        targetSdkVersion config.android.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    api config.dependencies["appcompat"]
+    api config.dependencies["arouter-api"]
+    annotationProcessor config.dependencies["arouter-compiler"]
+    api config.dependencies["constraintlayout"]
+    api config.dependencies["retrofit"]
+    api config.dependencies["adapter-rxjava2"]
+    api config.dependencies["converter-gson"]
+    api config.dependencies["rxjava2"]
+    api config.dependencies["rxlifecycle"]
+    api config.dependencies["rxlifecycle-components"]
+    api config.dependencies["rxandroid"]
+    api config.dependencies["butterknife"]
+    annotationProcessor config.dependencies["butterknife-compiler"]
+    api config.dependencies["utilcode"]
+    api config.dependencies["glide"]
+    api config.dependencies["lottie"]
+
+}
